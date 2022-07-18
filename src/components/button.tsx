@@ -17,6 +17,7 @@ export function Button({title, ...rest}:ButtonProps) {
 			fontFamily="body"
 			fontSize="sm"
 			_pressed={{ bg:"green.700" }}
+			maxW={400}
 			{...rest}
 		>
 			<Heading color="white" fontSize="sm">

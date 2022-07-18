@@ -31,17 +31,24 @@ export function Signin() {
 	}
 
 	return (
-		<KeyboardAvoidingView
-			behavior={
-				Platform.OS === "ios" ? "padding" : "height"
-			}
+		<VStack
+			flex={1}
+			pt={24}
+			px={8}
+			bg="gray.600"
+			alignItems="center"
 		>
-			<VStack
-				flex={1}
-				pt={24}
-				px={8}
-				bg="gray.600"
-				alignItems="center"
+			<KeyboardAvoidingView
+				behavior={
+					Platform.OS === 'ios' ? 'padding' : 'height'
+				}
+				style={{
+					flex:1,
+					width:'100%',
+					overflowY:'scroll',
+					backgroundColor:'transparent',
+					alignItems:'center'
+				}}
 			>
 				<Logo />
 
@@ -114,7 +121,7 @@ export function Signin() {
 					mt={10}
 					onPress={handleSignIn}
 				/>
-			</VStack>
-		</KeyboardAvoidingView>
+			</KeyboardAvoidingView>
+		</VStack>
 	)
 }

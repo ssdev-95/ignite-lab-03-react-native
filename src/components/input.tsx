@@ -13,6 +13,7 @@ export function Input({...rest}:IInputProps) {
 			h={14}
 			size="md"
 			fontFamily="body"
+			maxW={400}
 			fontSize="xl"
 			_focus={{
 				borderWidth:1,
