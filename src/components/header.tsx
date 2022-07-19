@@ -29,7 +29,7 @@ export function Header({ atHome = false }: HeaderProps) {
         alignItems="flex-start"
         justifyContent="center"
         minW="full"
-        bg="gray.500"
+        bg="gray.600"
       >
 				<Box
 					w="50%"
