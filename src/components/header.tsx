@@ -1,3 +1,5 @@
+import { useNavigation } from '@react-navigation/native'
+
 import {
 	Icon, HStack, Heading, IconButton
 } from 'native-base'
@@ -8,9 +10,20 @@ import Logout from '../assets/sign-out.svg'
 
 type HeaderProps = {
 	atHome?:boolean
+	onGoBack?: ()=>void
 }
 
-export function Header({ atHome = false }) {
+export function Header({ atHome = false, onGoBack }) {
+	const navigator = useNavigation()
+
+	function handleGoBack() {
+		navigator.goBack()
+	}
+
+	function handleSignOut() {
+		console.log('signed out!')
+	}
+
 	if(!atHome) {
 		return (
 			<HStack
@@ -23,8 +36,10 @@ export function Header({ atHome = false }) {
 				pl={6}
 			>
 				<IconButton
-					size="sm"
+					size="md"
 					icon={<Caret height={20} width={20} />}
+					_pressed={{ bg:'primary.700' }}
+					onPress={handleGoBack}
 				/>
 
 				<Heading
@@ -56,6 +71,7 @@ export function Header({ atHome = false }) {
 			<IconButton
 				size="sm"
 				icon={<Logout height={24} width={24} />}
+				onPress={handleSignOut}
 			/>
 		</HStack>
 	)

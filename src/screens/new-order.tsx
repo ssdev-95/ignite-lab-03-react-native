@@ -1,13 +1,16 @@
 import { VStack } from 'native-base'
+//import { useNavigation } from '@react-navigation/native'
 
 import { Input } from '../components/input'
 import { Button } from '../components/button'
 import { Header } from '../components/header'
 
 export function NewOrder() {
+	//const navigator = useNavigation()
+
 	return (
 		<VStack flex={1} bg="gray.600">
-			<Header atHome={false} />
+			<Header />
 			<VStack flex={1} px={6} py={10}>
 				<Input
 					placeholder="Patrimony"

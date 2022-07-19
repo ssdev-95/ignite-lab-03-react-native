@@ -1,4 +1,5 @@
 import { useState, useMemo } from 'react'
+import { useNavigation } from '@react-navigation/native'
 
 import {
 	Text, VStack, HStack, FlatList
@@ -12,6 +13,7 @@ import { Header } from '../components/header'
 import Desktop from '../assets/desktop-tower.svg'
 
 export function Orders() {
+	const navigator = useNavigation()
 	const [filter, setFilter] = useState<'open'|'closed'>('open')
 	const [orders, setOrders] = useState([
 		{id:'order-82e8durjew-0707202', patrimony:'883nn292', startedAt:'07/07/2022', closedAt:'12/072022', status:'closed'},
@@ -24,6 +26,11 @@ export function Orders() {
 		)
 	},[filter, orders])
 
+
+	function handleViewOrder(orderId:string) {
+		navigator.navigate('details', { orderId })
+	}
+
 	return (
 		<VStack
 			flex={1}
@@ -31,7 +38,7 @@ export function Orders() {
 			bg="gray.600"
 			pb={6}
 		>
-			<Header />
+			<Header atHome />
 	
 			<VStack flex={1} pt={6} px={6}>
 				<HStack
@@ -84,7 +91,10 @@ export function Orders() {
 					<FlatList
 						data={filteredOrders}
 						renderItem={({item})=>(
-							<Order order={item}/>
+							<Order
+								order={item}
+								onPress={()=>handleViewOrder(item.id)}
+							/>
 						)}
 						keyExtractor={(item)=>item.id}
 					/>
@@ -94,6 +104,7 @@ export function Orders() {
 			<HStack px={6} mt={6} w="full" maxW={400} mx="auto">
 				<Button
 					title="New order"
+					onPress={()=>navigator.navigate('new')}
 					mx="auto"
 					w="full"
 				/>

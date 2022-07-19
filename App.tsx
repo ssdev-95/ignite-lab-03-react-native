@@ -7,10 +7,7 @@ import {
 } from '@expo-google-fonts/roboto'
 
 import { Loading } from './src/components/loading'
-import { Signin } from './src/screens/signin'
-import { Orders } from './src/screens/orders'
-import { NewOrder } from './src/screens/new-order'
-import { Details } from './src/screens/detailed-order.tsx'
+import { Routes } from './src/routes'
 import { THEME } from './src/styles/theme'
 
 export default function App() {
@@ -26,7 +23,7 @@ export default function App() {
 				backgroundColor="transparent"
 				translucent
 			/>
-	    {fontsLoaded ? <NewOrder /> : <Loading/>}
+	    {fontsLoaded ? <Routes /> : <Loading/>}
 		</NativeBaseProvider>
   );
 }

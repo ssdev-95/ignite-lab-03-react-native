@@ -31,6 +31,12 @@ export function Order({ order, ...rest }:OrderProps) {
 
 	return (
 		<Pressable
+			borderWidth={1}
+			borderColor="gray.600"
+			_pressed={{
+				borderColor: 'gray.200',
+				rounded: 'sm'
+			}}
 			{...rest}
 		>
 			<HStack
