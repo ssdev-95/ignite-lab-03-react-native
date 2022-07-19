@@ -1,15 +1,14 @@
 import { useState, useMemo } from 'react'
 
 import {
-	Icon, Text, VStack, HStack, FlatList, IconButton
+	Text, VStack, HStack, FlatList
 } from 'native-base'
 
 import { Filter } from '../components/filter'
 import { Order } from '../components/order'
 import { Button } from '../components/button'
+import { Header } from '../components/header'
 
-import Logo from '../assets/logo_secondary.svg'
-import Logout from '../assets/sign-out.svg'
 import Desktop from '../assets/desktop-tower.svg'
 
 export function Orders() {
@@ -32,21 +31,8 @@ export function Orders() {
 			bg="gray.600"
 			pb={6}
 		>
-			<HStack
-				alignItems="center"
-				justifyContent="space-between"
-				w="full"
-				bg="gray.500"
-				pt={12}
-				pb={4}
-				px={6}
-			>
-				<Icon as={<Logo />} />
-				<IconButton
-					size="sm"
-					icon={<Logout height={24} width={24} />}
-				/>
-			</HStack>
+			<Header />
+	
 			<VStack flex={1} pt={6} px={6}>
 				<HStack
 					w="full"
@@ -55,10 +41,12 @@ export function Orders() {
 					<Text color="white" fontSize="xl">
 						All orders
 					</Text>
+	
 					<Text color="gray.300">
 						{orders.length}
 					</Text>
 				</HStack>
+
 				<HStack w="full" spacing={3} mt={4} mb={8}>
 					<Filter
 						title="ongoing"
@@ -102,6 +90,7 @@ export function Orders() {
 					/>
 				)}
 			</VStack>
+
 			<HStack px={6} mt={6} w="full" maxW={400} mx="auto">
 				<Button
 					title="New order"
