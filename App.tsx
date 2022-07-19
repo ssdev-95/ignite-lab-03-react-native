@@ -8,6 +8,9 @@ import {
 
 import { Loading } from './src/components/loading'
 import { Signin } from './src/screens/signin'
+import { Orders } from './src/screens/orders'
+import { NewOrder } from './src/screens/new-order'
+import { Details } from './src/screens/detailed-order.tsx'
 import { THEME } from './src/styles/theme'
 
 export default function App() {
@@ -23,7 +26,7 @@ export default function App() {
 				backgroundColor="transparent"
 				translucent
 			/>
-	    {fontsLoaded ? <Signin/> : <Loading/>}
+	    {fontsLoaded ? <Details/> : <Loading/>}
 		</NativeBaseProvider>
   );
 }
