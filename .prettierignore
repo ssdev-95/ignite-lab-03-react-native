@@ -1,0 +1,12 @@
+# Ignore artifacts:
+build
+coverage
+dist
+ios
+android
+node_modules
+yarn.lock
+*.json
+*.md
+.git
+yarn*

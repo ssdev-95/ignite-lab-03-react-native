@@ -1,9 +1,7 @@
 import { useState, useMemo } from 'react'
 import { useNavigation } from '@react-navigation/native'
 
-import {
-	Text, VStack, HStack, FlatList
-} from 'native-base'
+import { Text, VStack, HStack, FlatList } from 'native-base'
 
 import { Filter } from '../components/filter'
 import { Order } from '../components/order'
@@ -13,102 +11,90 @@ import { Header } from '../components/header'
 import Desktop from '../assets/desktop-tower.svg'
 
 export function Orders() {
-	const navigator = useNavigation()
-	const [filter, setFilter] = useState<'open'|'closed'>('open')
-	const [orders, setOrders] = useState([
-		{id:'order-82e8durjew-0707202', patrimony:'883nn292', startedAt:'07/07/2022', closedAt:'12/072022', status:'closed'},
-		{id:'order-niaj2e8rij-1907202', patrimony:'jew82jr9', startedAt:'19/07/2022', closedAt:null, status:'open'}
-	])
+  const navigator = useNavigation()
+  const [filter, setFilter] = useState<'open' | 'closed'>('open')
+  const [orders, setOrders] = useState([
+    {
+      id: 'order-82e8durjew-0707202',
+      patrimony: '883nn292',
+      startedAt: '07/07/2022',
+      closedAt: '12/072022',
+      status: 'closed',
+    },
+    {
+      id: 'order-niaj2e8rij-1907202',
+      patrimony: 'jew82jr9',
+      startedAt: '19/07/2022',
+      closedAt: null,
+      status: 'open',
+    },
+  ])
 
-	const filteredOrders = useMemo(()=>{
-		return orders.filter(
-			(order) => order.status === filter
-		)
-	},[filter, orders])
+  const filteredOrders = useMemo(() => {
+    return orders.filter((order) => order.status === filter)
+  }, [filter, orders])
 
+  function handleViewOrder(orderId: string) {
+    navigator.navigate('details', { orderId })
+  }
 
-	function handleViewOrder(orderId:string) {
-		navigator.navigate('details', { orderId })
-	}
+  return (
+    <VStack flex={1} w="full" bg="gray.600" pb={6}>
+      <Header atHome />
 
-	return (
-		<VStack
-			flex={1}
-			w="full"
-			bg="gray.600"
-			pb={6}
-		>
-			<Header atHome />
-	
-			<VStack flex={1} pt={6} px={6}>
-				<HStack
-					w="full"
-					justifyContent="space-between"
-				>
-					<Text color="white" fontSize="xl">
-						All orders
-					</Text>
-	
-					<Text color="gray.300">
-						{orders.length}
-					</Text>
-				</HStack>
+      <VStack flex={1} pt={6} px={6}>
+        <HStack w="full" justifyContent="space-between">
+          <Text color="white" fontSize="xl">
+            All orders
+          </Text>
 
-				<HStack w="full" spacing={3} mt={4} mb={8}>
-					<Filter
-						title="ongoing"
-						type="open"
-						flex={1}
-						isActive={filter === 'open'}
-						onPress={()=>setFilter('open')}
-					/>
+          <Text color="gray.300">{orders.length}</Text>
+        </HStack>
 
-					<Filter
-						title="closed"
-						type="closed"
-						flex={1}
-						isActive={filter === 'closed'}
-						onPress={()=>setFilter('closed')}
-					/>
-				</HStack>
-				{!filteredOrders.length ? (
-					<VStack pt={4} flex={1} alignItems="center">
-						<Desktop
-							height={128}
-							width={128}
-						/>
-						<Text
-							color="gray.300"
-							textAlign="center"
-							fontSize="xl"
-							mt={4}
-						>
-							You don&apos;t have any {'\n'}
-							orders {filter} yet.
-						</Text>
-					</VStack>
-				) : (
-					<FlatList
-						data={filteredOrders}
-						renderItem={({item})=>(
-							<Order
-								order={item}
-								onPress={()=>handleViewOrder(item.id)}
-							/>
-						)}
-						keyExtractor={(item)=>item.id}
-					/>
-				)}
-			</VStack>
+        <HStack w="full" spacing={3} mt={4} mb={8}>
+          <Filter
+            title="ongoing"
+            type="open"
+            flex={1}
+            isActive={filter === 'open'}
+            onPress={() => setFilter('open')}
+          />
 
-			<HStack px={6} mt={6} w="full" maxW={400} mx="auto">
-				<Button
-					title="New order"
-					onPress={()=>navigator.navigate('new')}
-					mx="auto"
-					w="full"
-				/>
-			</HStack>
-		</VStack>
-	)
+          <Filter
+            title="closed"
+            type="closed"
+            flex={1}
+            isActive={filter === 'closed'}
+            onPress={() => setFilter('closed')}
+          />
+        </HStack>
+        {!filteredOrders.length ? (
+          <VStack pt={4} flex={1} alignItems="center">
+            <Desktop height={128} width={128} />
+            <Text color="gray.300" textAlign="center" fontSize="xl" mt={4}>
+              You don&apos;t have any {'\n'}
+              orders {filter} yet.
+            </Text>
+          </VStack>
+        ) : (
+          <FlatList
+            data={filteredOrders}
+            renderItem={({ item }) => (
+              <Order order={item} onPress={() => handleViewOrder(item.id)} />
+            )}
+            keyExtractor={(item) => item.id}
+          />
+        )}
+      </VStack>
+
+      <HStack px={6} mt={6} w="full" maxW={400} mx="auto">
+        <Button
+          title="New order"
+          onPress={() => navigator.navigate('new')}
+          mx="auto"
+          w="full"
+        />
+      </HStack>
+    </VStack>
+  )
 }
