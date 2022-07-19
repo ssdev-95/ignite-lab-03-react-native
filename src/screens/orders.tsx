@@ -51,7 +51,12 @@ export function Orders() {
           <Text color="gray.300">{orders.length}</Text>
         </HStack>
 
-        <HStack w="full" spacing={3} mt={4} mb={8}>
+        <HStack
+					w="full"
+					space={3}
+					mt={4}
+					mb={8}
+				>
           <Filter
             title="ongoing"
             type="open"
