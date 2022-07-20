@@ -1,11 +1,19 @@
 import { useRoute } from '@react-navigation/native'
 import {
-	Box, Text, Center, HStack, VStack, Heading, useTheme
+	Box,
+	Text,
+	Center,
+	HStack,
+	VStack,
+	Heading,
+	useTheme,
+	ScrollView
 } from 'native-base'
 
 import { Input } from '../components/input'
 import { IOrder } from '../components/order'
 import { Button } from '../components/button'
+import { CardDetail } from '../components/card-detail'
 
 import Desktop from '../assets/desktop-tower.svg'
 import Hourglass from '../assets/hourglass.svg'
@@ -51,6 +59,7 @@ export function Details() {
   return (
     <VStack flex={1} bg="gray.700">
       <Header />
+
       <VStack flex={1} space={4}>
 				<HStack
 					w="full"
@@ -73,116 +82,52 @@ export function Details() {
 					>
 						{
 							order.status === 'open' ?
-							'on going' :
-							'finalizado'
+							'processing' :
+							'finalized'
 						}
 					</Text>
 				</HStack>
-				<Box bg="gray.600" p={4} mx={6} rounded="md">
-					<VStack space={3}>
-						<HStack alignItems="center" space={3}>
-							<Desktop height={24} width={24} />
-							<Text
-								color="gray.300"
-								textTransform="uppercase"
-							>
-								equipment
-							</Text>
-						</HStack>
-		        <Text color="gray.100">
-							Patrimony&nbsp;&nbsp;
-							{order.patrimony}
-						</Text>
-					</VStack>
-				</Box>
 
-				<Box
-					bg="gray.600"
-					p={4}
-					mx={6}
-					rounded="md"
-					h={150}
+				<VStack space={3} flex={1}>
+				<ScrollView
+					w="full"
+					showsVerticalScrollIndicator={false}
 				>
-					<VStack space={3}>
-						<HStack alignItems="center" space={3}>
-							<Clipboard height={24} width={24} />
+					<CardDetail
+						title="Equipment"
+						icon={<Desktop height={24} width={24}/>}
+						content={`Patrimony ${order.patrimony}`}
+					/>
 
-							<Text
-								color="gray.300"
-								textTransform="uppercase"
-							>
-								problem description
-							</Text>
-						</HStack>
+					<CardDetail
+						title="Problem"
+						icon={<Clipboard height={24} width={24}/>}
+						content={order.description}
+						footer={`Opened at ${order.startedAt}`}
+					/>
 
-						<Text color="gray.100">
-							{order.description}
-						</Text>
-						<Text>
-							Opened at&nbsp;
-							{order.startedAt}
-						</Text>
-					</VStack>
-				</Box>
-				{order.status === 'closed' ? (
-					<Box
-						bg="gray.600"
-						p={4}
-						mx={6}
-						rounded="md"
-						h={150}
+					<CardDetail
+						title="Solution"
+						icon={<Check height={24} width={24}/>}
+						content={order.solution}
 					>
-						<VStack space={3}>
-							<HStack alignItems="center" space={3}>
-								<Check height={24} width={24} />
-
-								<Text
-									color="gray.300"
-									textTransform="uppercase"
-								>
-									solution
-								</Text>
-							</HStack>
-
-							<Text color="gray.100">
-								{order.solution}
-							</Text>
-							
-							<Text>
-								Closed at&nbsp;
-								{order.closedAt}
-							</Text>
-						</VStack>
-					</Box>
-				) : (
-					<VStack mx={6} pb={6} flex={1} space={3}>
-						<Box
-							flex={1}
-							bg="gray.600"
-							rounded="md"
-							p={4}
-						>
-							<VStack space={3}>
-								<HStack alignItems="center" space={3}>
-									<Check height={24} width={24} />
-
-									<Text
-										color="gray.300"
-										textTransform="uppercase"
-									>
-										solution
-									</Text>
-								</HStack>
-								<Input
-									flex={1}
-									w="full"
-									placeholder="Solution proposal"
-								/>
-							</VStack>
-						</Box>
-						<Button title="Close order" />
-					</VStack>
+						<Input
+							h={200}
+							multiline
+							textAlignVertical="top"
+							placeholder="Solution proposal"
+							fontSize="md"
+						/>
+					</CardDetail>
+				</ScrollView>
+				{order.status === 'open' && (
+					<Button
+						title="Close order"
+						mx={6}
+						mb={4}
+					/>
 				)}
+				</VStack>
       </VStack>
     </VStack>
   )

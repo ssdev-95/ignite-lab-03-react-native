@@ -1,5 +1,7 @@
 import { ReactNode } from 'react'
 
+import { Box, HStack, VStack, Text } from 'native-base'
+
 type CardProps = {
 	title:string
 	content?:string
@@ -20,6 +22,7 @@ export function CardDetail({
 			bg="gray.600"
 			p={4}
 			mx={6}
+			mb={4}
 			maxW={400}
 			rounded="md"
 		>
@@ -43,9 +46,15 @@ export function CardDetail({
 
 
 				{!!footer&& (
-					<Text color="gray.100">
-						{footer}
-					</Text>
+					<Box
+						pt={3}
+						borderTopWidth={1}
+						borderTopColor="gray.400"
+					>
+						<Text color="gray.300">
+							{footer}
+						</Text>
+					</Box>
 				)}
 
 				{children}
