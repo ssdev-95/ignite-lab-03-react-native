@@ -13,9 +13,7 @@
 			"googleServicesFile": "./GoogleService-Info.plist"
 		},
 		"plugins": [
-			"@react-native-firebase/app",
-			"@react-native-firebase/auth",
-			"@react-native-firebase/firestore"
+			"@react-native-firebase/app"
 		]
   }
 }
