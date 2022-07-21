@@ -7,11 +7,10 @@
       "**/*"
     ],
     "android": {
-      "googleServicesFile": "./google-services.json",
-      "package": "com.xsallus.helper"
+      "googleServicesFile": "./google-services.json"
     },
     "ios": {
-      "googleServicesFile": "./GoogleService-Info.plist.xml",
+      "googleServicesFile": "./GoogleService-Info.plist",
       "bundleIdentifier": "com.xsallus.helper",
 			"requireFullScreen": true
     },
