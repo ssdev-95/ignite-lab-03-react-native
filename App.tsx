@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import * as ScreenOrientation from 'expo-screen-orientation'
 import { NativeBaseProvider, StatusBar } from 'native-base'
 import {
   useFonts,
@@ -15,6 +16,12 @@ export default function App() {
     Roboto_700Bold,
     Roboto_400Regular,
   })
+
+  useEffect(() => {
+    ScreenOrientation.lockAsync(
+      ScreenOrientation.OrientationLock.PORTRAIT_UP
+    ).catch((err) => console.log(err))
+  }, [])
 
   return (
     <NativeBaseProvider theme={THEME}>

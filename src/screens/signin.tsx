@@ -1,5 +1,7 @@
+/* eslint-disable react-native/no-inline-styles */
 import { useState } from 'react'
-import { Platform } from 'react-native'
+import { Alert, Platform } from 'react-native'
+import auth from '@react-native-firebase/auth'
 
 import {
   Icon,
@@ -25,9 +27,19 @@ export function Signin() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false)
 
   function handleSignIn() {
-    console.log({ email, password })
+    setLoading(true)
+    auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(() => {
+        setLoading(false)
+      })
+      .catch((err) => {
+        setLoading(false)
+        Alert.alert('Auth Error', err.code)
+      })
   }
 
   return (
@@ -91,7 +103,13 @@ export function Signin() {
           }
         />
 
-        <Button title="Enter" width="full" mt={10} onPress={handleSignIn} />
+        <Button
+          title="Enter"
+          width="full"
+          mt={10}
+          isLoading={loading}
+          onPress={handleSignIn}
+        />
       </KeyboardAvoidingView>
     </VStack>
   )

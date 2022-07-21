@@ -8,12 +8,13 @@ import { Details } from '../screens/detailed-order.tsx'
 const { Navigator, Screen } = createNativeStackNavigator()
 
 export function AppRoutes() {
-	const animation = Platform.OS === 'ios' ? 'slide_from_bottom': 'slide_from_right'
+  const animation =
+    Platform.OS === 'ios' ? 'slide_from_bottom' : 'slide_from_right'
   return (
     <Navigator
       screenOptions={{
         headerShown: false,
-				animation
+        animation,
       }}
     >
       <Screen name="home" component={Orders} />

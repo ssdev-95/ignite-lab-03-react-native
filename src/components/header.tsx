@@ -1,8 +1,6 @@
 import { useNavigation } from '@react-navigation/native'
 
-import {
-	Box, Icon, HStack, Heading, Container, IconButton
-} from 'native-base'
+import { Box, Icon, HStack, Heading, Container, IconButton } from 'native-base'
 
 import Caret from '../assets/caret-left.svg'
 import Logo from '../assets/logo_secondary.svg'
@@ -31,40 +29,31 @@ export function Header({ atHome = false }: HeaderProps) {
         minW="full"
         bg="gray.600"
       >
-				<Box
-					w="50%"
-					pt={12}
-					pb={4}
-					pl={6}
-					pr={0}
-				>
-					<HStack
-						alignItems="center"
-						justifyContent="space-between"
-					>
-	        <IconButton
-		        size="sm"
-			      icon={<Caret height={20} width={20} />}
-						borderWidth={1}
-						borderColor="transparent"
-				    _pressed={{
-							borderColor:'primary.700',
-							bg:'transparent'
-						}}
-					  onPress={handleGoBack}
-	        />
+        <Box w="50%" pt={12} pb={4} pl={6} pr={0}>
+          <HStack alignItems="center" justifyContent="space-between">
+            <IconButton
+              size="sm"
+              icon={<Caret height={20} width={20} />}
+              borderWidth={1}
+              borderColor="transparent"
+              _pressed={{
+                borderColor: 'primary.700',
+                bg: 'transparent',
+              }}
+              onPress={handleGoBack}
+            />
 
-		      <Heading
-			      flex={1}
-					  textAlign="center"
-						color="white"
-	          fontSize="xl"
-						mr={-32}
-		      >
-			      Order
-				  </Heading>
-					</HStack>
-				</Box>
+            <Heading
+              flex={1}
+              textAlign="center"
+              color="white"
+              fontSize="xl"
+              mr={-32}
+            >
+              Order
+            </Heading>
+          </HStack>
+        </Box>
       </Container>
     )
   }
@@ -83,12 +72,12 @@ export function Header({ atHome = false }: HeaderProps) {
 
       <IconButton
         size="sm"
-				borderWidth={1}
-				borderColor="transparent"
-				_pressed={{
-					borderColor:'primary.700',
-					bg:'transparent'
-				}}
+        borderWidth={1}
+        borderColor="transparent"
+        _pressed={{
+          borderColor: 'primary.700',
+          bg: 'transparent',
+        }}
         icon={<Logout height={24} width={24} />}
         onPress={handleSignOut}
       />

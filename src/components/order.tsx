@@ -16,8 +16,8 @@ import Check from '../assets/circle-wavy-check.svg'
 export interface IOrder {
   id: string
   patrimony: string
-	startedAt: string
-  closedAt?: string|null
+  startedAt: string
+  closedAt?: string | null
   status: 'open' | 'closed'
 }
 
