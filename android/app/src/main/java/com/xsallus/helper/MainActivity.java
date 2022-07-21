@@ -1,4 +1,4 @@
-package com.rockethelper;
+package com.xsallus.helper;
 
 import android.os.Build;
 import android.os.Bundle;

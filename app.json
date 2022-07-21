@@ -6,14 +6,17 @@
     "assetBundlePatterns": [
       "**/*"
     ],
-		"android": {
-			"googleServicesFile": "./google-services.json"
-		},
-		"ios": {
-			"googleServicesFile": "./GoogleService-Info.plist"
-		},
-		"plugins": [
-			"@react-native-firebase/app"
-		]
+    "android": {
+      "googleServicesFile": "./google-services.json",
+      "package": "com.xsallus.helper"
+    },
+    "ios": {
+      "googleServicesFile": "./GoogleService-Info.plist.xml",
+      "bundleIdentifier": "com.xsallus.helper",
+			"requireFullScreen": true
+    },
+    "plugins": [
+      "@react-native-firebase/app"
+    ]
   }
 }
